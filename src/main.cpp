@@ -38,7 +38,7 @@ String path = "/DHT11";
 unsigned long dataMillis = 0;
 int count = 0;
 
-#define DHTPIN D5     // pin yang digunakan
+#define DHTPIN D3     // pin yang digunakan
 #define DHTTYPE DHT11 // tipe dht yang digunakan
 
 DHT dht(DHTPIN, DHTTYPE);
@@ -98,24 +98,24 @@ void loop()
     
 
     // transaksi firebase
-    if (Firebase.setFloat(fbdo,path + "/data/temperature",t)){
+    if (Firebase.setFloat(fbdo,path + "/temperature",t)){
       Serial.println("PASSED");
       Serial.println("PATH : "+fbdo.dataPath());
       Serial.println("TYPE : "+fbdo.dataType());
       Serial.println("ETag : "+fbdo.ETag());
-      Serial.print("VALUE : ");
+      
     }
     else {
       Serial.println("FAILED");
       Serial.println("REASON : "+fbdo.errorReason());
     }
     Serial.println("----------------------------------");
-    if (Firebase.setFloat(fbdo,path + "/data/kelembapan",h)){
+    if (Firebase.setFloat(fbdo,path + "/kelembapan",h)){
       Serial.println("PASSED");
       Serial.println("PATH : "+fbdo.dataPath());
       Serial.println("TYPE : "+fbdo.dataType());
       Serial.println("ETag : "+fbdo.ETag());
-      Serial.print("VALUE : ");
+
     }else {
       Serial.println("FAILED");
       Serial.println("REASON : "+fbdo.errorReason());
